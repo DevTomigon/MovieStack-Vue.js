@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>MovieStack</title>
+</head>
+<body>
+    <header class="flex justify-between items-center bg-slate-800 h-[70px]">
+        <img class="h-[100px]" src="/assets/images/Moviestack_logotipo1.png" alt="">
+        <nav class="flex">
+            <ul class="flex space-x-8 mr-3 text-white">
+                <li class="hover:underline decoration-1 p-2"><a href="/index.html">Home</a></li>
+                <li class="hover:underline decoration-1 p-2"><a href="/assets/pages/movies.html">Movies</a></li>
+                <li class="hover:underline decoration-1 p-2"><a href="/assets/pages/favoritas.html">Favs</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="h-3/6">
+        <video class="w-full h-full object-cover" autoplay loop muted>
+            <source src="/assets/images/Black Minimal Horror Channel Intro Outro Youtube Video.mp4" type="video/mp4">
+        </video>
+        <div class="absolute top-[620px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+            <a href="/assets/pages/movies.html" class="m-4 p-2 bg-red-500 text-white rounded-md text-sm inline-block">Movies</a>
+            <a href="/assets/pages/favs.html" class="m-4 p-2 bg-red-500 text-white rounded-md text-sm inline-block">My Favs</a>
+        </div>
+    </section>
+    
+
+    <script src="/tailwind.config.js"></script>
+</body>
+</html>

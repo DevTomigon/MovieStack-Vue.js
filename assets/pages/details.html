@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Details</title>
+</head>
+
+<body class="bg-gray-200">
+  <header class="flex justify-between items-center bg-slate-800 h-[70px]">
+    <img class="h-[100px]" src="/assets/images/Moviestack_logotipo1.png" alt="">
+    <nav class="flex">
+      <ul class="flex space-x-8 mr-3 text-white">
+        <li class="hover:underline decoration-1 p-2"><a href="/index.html">Home</a></li>
+        <li class="hover:underline decoration-1 p-2"><a href="/assets/pages/movies.html">Movies</a></li>
+        <li class="hover:underline decoration-1 p-2"><a href="/assets/pages/favoritas.html">Favs</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="bg-gray-900">
+    <video class="w-full h-[300px] object-cover" autoplay loop muted>
+      <source src="/assets/images/Black and White Minimalist Gaming Channel Banner Landscape.mp4" type="video/mp4">
+    </video>
+  </main>
+  <!-- Container -->
+<div id="app">
+  <div  class="container mt-16 mb-32 mx-auto p-4 md:p-0">
+
+
+    
+      <div v-if = "loader" class="shadow-lg flex flex-wrap w-full lg:w-4/5 mx-auto">
+        <div class="bg-cover bg-bottom border w-full md:w-1/3 h-64 md:h-auto relative">
+          <img :src="'https://moviestack.onrender.com/static/' + selectedMovie.image" alt="Movie Poster">
+          <div class="absolute text-xl">
+            <i class="fa fa-heart text-white hover:text-red-light ml-4 mt-4 cursor-pointer"></i>
+          </div>
+          <div class="w-2/3 mx-auto">
+            <div class="bg-white shadow-md rounded my-6">
+              <table class="text-left w-full border-collapse"> 
+                <thead>
+                  <tr>
+                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Original Language:</th>
+                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">{{selectedMovie.original_language}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="hover:bg-grey-lighter">
+                    <td class="py-4 px-6 border-b border-grey-light">Release Date:</td>
+                    <td class="py-4 px-6 border-b border-grey-light">{{selectedMovie.release_date}}</td>
+                  </tr>
+                  <tr class="hover:bg-grey-lighter">
+                    <td class="py-4 px-6 border-b border-grey-light">Runtime:</td>
+                    <td class="py-4 px-6 border-b border-grey-light">{{selectedMovie.runtime}}</td>
+                  </tr>
+                  <tr class="hover:bg-grey-lighter">
+                    <td class="py-4 px-6 border-b border-grey-light">Status:</td>
+                    <td class="py-4 px-6 border-b border-grey-light">{{selectedMovie.status}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white w-full md:w-2/3">
+          <div class="h-full mx-auto px-6 md:px-0 md:pt-6 md:-ml-6 relative">
+            <div class="bg-gray-400 lg:h-full p-6 -mt-6 md:mt-0 relative mb-4 md:mb-0 flex flex-wrap md:flex-wrap items-center">
+        
+              <!-- Título -->
+              <div class="w-full lg:w-full text-center md:text-left mb-4">
+                <h3 class="text-2xl capitalize flex top-0 font-semibold">{{ selectedMovie.title }}</h3>
+              </div>
+        
+              <!-- Tagline -->
+              <div class="w-full lg:w-full text-center md:text-left mb-4">
+                <p class=" w-[200px]">{{ selectedMovie.tagline }}</p>
+              </div>
+        
+              <!-- Overview -->
+              <div class="w-full lg:w-full text-center md:text-left">
+                <p class="h-[100px] overflow-clip">{{ selectedMovie.overview }}</p>
+              </div>
+              
+              <table class="bg-white shadow-md shadow-gray-400 text-left w-full border-collapse"> 
+                <thead>
+                  <tr>
+                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Original Language:</th>
+                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">{{selectedMovie.original_language}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="hover:bg-grey-lighter">
+                    <td class="py-4 px-6 border-b border-grey-light">Vote Average ⭐:</td>
+                    <td class="py-4 px-6 border-b border-grey-light">{{selectedMovie.vote_average}}</td>
+                  </tr>
+                  <tr class="hover:bg-grey-lighter">
+                    <td class="py-4 px-6 border-b border-grey-light">Budget:</td>
+                    <td class="py-4 px-6 border-b border-grey-light">{{selectedMovie.budget}}</td>
+                  </tr>
+                  <tr class="hover:bg-grey-lighter">
+                    <td class="py-4 px-6 border-b border-grey-light">Revenue:</td>
+                    <td class="py-4 px-6 border-b border-grey-light">{{selectedMovie.revenue}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    
+  </div>
+  
+</div>
+
+  <!-- ./Container -->
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="/main.js"></script>
+</body>
+
+</html>

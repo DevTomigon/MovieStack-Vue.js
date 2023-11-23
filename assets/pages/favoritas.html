@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body class="bg-gray-900">
+    <header class="flex justify-between items-center bg-slate-800 h-[70px]">
+      <img class="h-[100px]" src="/assets/images/Moviestack_logotipo1.png" alt="">
+      <nav class="flex">
+        <ul class="flex space-x-8 mr-3 text-white">
+          <li class="hover:underline decoration-1 p-2"><a href="/index.html">Home</a></li>
+          <li class="hover:underline decoration-1 p-2"><a href="/assets/pages/movies.html">Movies</a></li>
+          <li class="hover:underline decoration-1 p-2"><a href="/assets/pages/favoritas.html">Favs</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="bg-gray-900">
+      <video class="w-full h-[300px] object-cover" autoplay loop muted>
+        <source src="/assets/images/Black and White Minimalist Gaming Channel Banner Landscape.mp4" type="video/mp4">
+      </video>
+    </main>
+    <div id="app">
+        <h1 class="text-center text-2xl font-bold text-white mt-5">Mis Películas favoritas</h1>
+      
+        <template v-if="isFavsPage">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                <div v-for="movie in moviesFiltered" :key="movie.id" class="p-5 m-10" id="cartas">
+                    <div class="bg-white shadow-md w-60 overflow-hidden rounded-2xl " :data-id="movie.id">
+                        <div class="relative">
+                            <img :src="'https://moviestack.onrender.com/static/' + movie.image" alt="Movie Poster">
+                        </div>
+                        <div class="pt-3 pb-4 px-3.5 flex flex-col">
+                            <h1 class="text-lg capitalize font-semibold">{{ movie.title }}</h1>
+                            <p class="overflow-y-scroll h-[100px]">{{ movie.overview }}</p>
+                            <a class="bg-gray-900 rounded-md mt-2 text-white p-2 flex justify-center items-center"
+                                @click="verMas(movie.id)" :href="'../pages/details.html?id=' + movie.id">Ver más</a>
+                            <!-- Solo muestra el botón "Eliminar de Favoritas" si estás en la página de favoritas -->
+                            <button @click="removeFromFavorites(movie.id)">Eliminar de Favoritas</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+      </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="/main.js"></script>
+</body>
+</html>

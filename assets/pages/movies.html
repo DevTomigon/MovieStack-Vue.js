@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Moviestack</title>
+</head>
+
+<body>
+    <header class="flex justify-between items-center bg-slate-800 h-[70px]">
+        <img class="h-[100px]" src="/assets/images/Moviestack_logotipo1.png" alt="">
+        <nav class="flex">
+            <ul class="flex space-x-8 mr-3 text-white">
+                <li class="hover:underline decoration-1 p-2"><a href="/index.html">Home</a></li>
+                <li class="hover:underline decoration-1 p-2"><a href="/assets/pages/movies.html">Movies</a></li>
+                <li class="hover:underline decoration-1 p-2"><a href="/assets/pages/favoritas.html">Favs</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="bg-gray-900">
+        <video class="w-full h-[300px] object-cover" autoplay loop muted>
+            <source src="/assets/images/Black and White Minimalist Gaming Channel Banner Landscape.mp4"
+                type="video/mp4">
+        </video>
+        <div id="app" class="flex flex-wrap justify-center shadow-xl shadow-gray-700">
+            <!-- Barra de búsqueda y select -->
+            <div class="w-full flex items-center justify-center p-4">
+                <div class="relative flex flex-row hover:drop-shadow">
+                    <input v-on:input="guardarSearch" type="search" id="default-search"
+                        class="block w-1/2 p-4 h-6 text-sm text-gray-900 border border-r-0 border-gray-300 rounded-l-lg focus:outline-none"
+                        placeholder="Search..." required />
+                    <button
+                        class="row inset-y-2 px-4 right-2 flex items-center border-1 border-l-0 border-gray-300 bg-gray-300 rounded-r-lg"
+                        v-on:click="filtrar">
+                        <svg aria-hidden="true" class="w-4 h-4 text-gray-800 z-10" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Select de géneros -->
+                <select v-on:input="guardarSelect" class="bg-white w-1/4" name="genreSelect" id="genreSelect">
+                    <option class="text-center" value="all">All genres</option>
+                    <template v-if="genres.length > 0" v-for="genre in genres">
+                        <option class="text-center" :value="genre">{{ genre }}</option>
+                    </template>
+                </select>
+            </div>
+
+            <!-- Cards de películas -->
+            <template v-if="moviesFiltered.length > 0" v-for="movie of moviesFiltered" :key="movie.id">
+                <div class="p-10 bg-gray-900 flex flex-col items-center gap-2" id="cartas">
+                    <div class="bg-white shadow-md w-60 overflow-hidden rounded-2xl" :data-id="movie.id">
+                        <div class="relative">
+                            <img :src="'https://moviestack.onrender.com/static/' + movie.image" alt="Movie Poster">
+                        </div>
+
+                        <div class="pt-3 pb-4 px-3.5 flex flex-col">
+                            <h1 class="text-lg capitalize font-semibold">{{ movie.title }}</h1>
+                            <p class="overflow-y-scroll h-[100px]">{{ movie.overview }}</p>
+                            <a class="bg-gray-900 rounded-md mt-2 text-white p-2 flex justify-center items-center"
+                                @click="verMas(movie.id)" :href="'../pages/details.html?id=' + movie.id">Ver más</a>
+                            <button v-if="isFavsPage" @click="removeFromFavorites(movie.id)">Eliminar de Favoritas</button>
+                            <button class="bg-gray-900 rounded-md mt-2 text-white p-2 flex justify-center items-center"
+                                @click="addToFavorites(movie.id)" data-action="add" :data-id="movie.id">Add to
+                                favorites</button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <template v-else>
+                <h2>No hay películas</h2>
+            </template>
+        </div>
+    </main>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="/main.js"></script>
+</body>
+
+</html>
